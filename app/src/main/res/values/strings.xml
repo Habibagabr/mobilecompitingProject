@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Smarteo</string>
+    <string name="welcome_text">Welcome back to </string>
+    <string name="subject_kpi_card">Subject Count</string>
+    <string name="studied_hour_kpi_card">Studied Hours</string>
+    <string name="goal_kpi_card">Goal Study Hour</string>
+
+    <string name="subject_header">Subjects</string>
+    <string name="add_subject_button">Add Subject</string>
+    <string name="add_subject_text">You don\'t have any subjects \n Click the + button to add new subject</string>
+
+
+    <string name="start_session_btn">Start Study Session</string>
+
+    <string name="upcoming_tasks_header">Upcoming Tasks</string>
+    <string name="add_task_text">You don\'t have any upcoming tasks.\n Click the + button in subject screen to add new task.</string>
+
+    <string name="recently_studied_header">Recently Study Sessions</string>
+    <string name="add_session_text">You don\'t have any recent study sessions. \n Start a study session to begin recording your progress..</string>
+    <string name="add_subject_dialog_title">Add/Update New Subject</string>
+    <string name="add_subject_dialog_confirm_btn">Add</string>
+    <string name="add_subject_dialog_dismiss_btn">Cancel</string>
+    <string name="add_subject_dialog_subject_name_input_field_label">Subject Name</string>
+    <string name="add_subject_dialog_hour_goal_input_field_label">Goal Study Hour</string>
+
+
+</resources>

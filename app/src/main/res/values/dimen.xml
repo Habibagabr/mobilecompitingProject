@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_horizontal_padding">16dp</dimen>
+    <dimen name="home_screen_top_bar_top_vertical_padding">60dp</dimen>
+    <dimen name="home_screen_vertical_padding">24dp</dimen>
+
+    <dimen name="kpi_card_height">100dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="card_spacedby">12dp</dimen>
+
+    <dimen name="empty_image_size">100dp</dimen>
+    <dimen name="empty_section_vertical_padding">22dp</dimen>
+    <dimen name="empty_image_text_space">12dp</dimen>
+
+
+
+
+
+    <dimen name="subject_section_spacedBy">12dp</dimen>
+    <dimen name="subject_card_height">150dp</dimen>
+    <dimen name="subject_card_width">150dp</dimen>
+    <dimen name="subject_image_size">100dp</dimen>
+
+    <dimen name="start_session_btn_height">36dp</dimen>
+    <dimen name="start_session_horizontal_outer_btn_padding">20dp</dimen>
+    <dimen name="start_session_horizontal_inner_btn_padding">60dp</dimen>
+    <dimen name="start_session_vertical_btn_padding">12dp</dimen>
+    
+    <dimen name="upcoming_tasks_card_padding">10dp</dimen>
+    <dimen name="upcoming_tasks_card_spacedBy">10dp</dimen>
+    
+    <dimen name="tasks_priority_circle_size">30dp</dimen>
+    <dimen name="tasks_priority_border_circle_size">2dp</dimen>
+
+
+    <dimen name="recently_study_spacedBy">7dp</dimen>
+
+
+    <dimen name="add_subject_dialoge_icon_size">32dp</dimen>
+    <dimen name="add_subject_dialoge_spacedby">10dp</dimen>
+    <dimen name="dialog_box_headline_size">20sp</dimen>
+    <dimen name="dialog_box_color_item_size">40dp</dimen>
+    <dimen name="subject_color_border">2dp</dimen>
+    <dimen name="add_subject_dialog_spacedby_vertical_element">26dp</dimen>
+
+
+</resources>
