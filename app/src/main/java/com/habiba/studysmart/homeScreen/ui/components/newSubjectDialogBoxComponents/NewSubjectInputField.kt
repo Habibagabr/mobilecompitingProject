@@ -1,14 +1,11 @@
-package com.habiba.studysmart.homeScreen.ui.components.dialogBoxComponents
+package com.habiba.studysmart.homeScreen.ui.components.newSubjectDialogBoxComponents
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
 import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenState
 import com.habiba.studysmart.homeScreen.util.InputFieldOptions

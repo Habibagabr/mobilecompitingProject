@@ -5,5 +5,5 @@ data class SessionModel(
     val date: String,
     val duration: Long,
     val sessionSubjectId: Int,
-    val sessionId: Int? = null
+    val sessionId: Int
 )

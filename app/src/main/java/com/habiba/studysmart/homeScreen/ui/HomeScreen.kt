@@ -11,12 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
-import com.habiba.studysmart.homeScreen.domain.model.SessionModel
-import com.habiba.studysmart.homeScreen.domain.model.SubjectModel
-import com.habiba.studysmart.homeScreen.domain.model.TaskModel
-import com.habiba.studysmart.homeScreen.ui.components.dialogBoxComponents.AddNewSubjectDialog
+import com.habiba.studysmart.homeScreen.ui.components.deleteSessionDialogBoxComponents.DeleteSessionDialogBox
+import com.habiba.studysmart.homeScreen.ui.components.newSubjectDialogBoxComponents.AddNewSubjectDialogBox
 import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.EmptySection
-import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.RecentlyStudyList
+import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.recentlyStudyList
 import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.SectionHeader
 import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.TaskKpiList
 import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.upComingTasksList
@@ -25,98 +23,7 @@ import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenState
 import com.habiba.studysmart.homeScreen.ui.sections.HomeScreenTopBarSection
 import com.habiba.studysmart.homeScreen.ui.sections.StartStudySessionSection
 import com.habiba.studysmart.homeScreen.ui.sections.SubjectsSection
-import com.habiba.studysmart.ui.theme.blueGradient
-import com.habiba.studysmart.ui.theme.darkBlueGradient
-import com.habiba.studysmart.ui.theme.greenGradient
-import com.habiba.studysmart.ui.theme.pinkOrangeGradient
-import com.habiba.studysmart.ui.theme.purpleGradient
 
-
-val recentlyStudiedSessions = listOf(
-    SessionModel(
-        relatedToSubject = "English",
-         date= "22 oct 2022",
-        duration= 2,
-        sessionSubjectId=1,
-        sessionId= 0 ,
-
-),
-    SessionModel(
-        relatedToSubject = "arabic",
-        date= "22 oct 2022",
-        duration= 5,
-        sessionSubjectId=2,
-        sessionId= 1 ,
-    ),
-    SessionModel(
-        relatedToSubject = "physics",
-        date= "22 oct 2022",
-        duration= 10,
-        sessionSubjectId=3,
-        sessionId= 2 ,
-    ),
-    SessionModel(
-        relatedToSubject = "chemistry",
-        date= "22 oct 2022",
-        duration= 7,
-        sessionSubjectId=3,
-        sessionId= 3 ,
-    ),
-    SessionModel(
-        relatedToSubject = "maths",
-        date= "22 oct 2022",
-        duration= 6,
-        sessionSubjectId=4,
-        sessionId= 4 ,
-    ),
-    SessionModel(
-        relatedToSubject = "social study",
-        date= "22 oct 2022",
-        duration= 2,
-        sessionSubjectId=5,
-        sessionId= 5 ,
-    ),
-)
-val subjectsList=listOf(
-    SubjectModel(
-        name = "English",
-        goalHours = 10f,
-        subjectId = 1,
-        subjectColor = greenGradient
-    ),
-    SubjectModel(
-        name = "arabic",
-        goalHours = 10f,
-        subjectId = 2,
-        subjectColor = pinkOrangeGradient
-
-
-    ),
-    SubjectModel(
-        name = "physics",
-        goalHours = 10f,
-        subjectId = 3,
-        subjectColor = darkBlueGradient
-    ),
-    SubjectModel(
-        name = "chemistry",
-        goalHours = 10f,
-        subjectId = 4,
-        subjectColor = purpleGradient
-    ),
-    SubjectModel(
-        name = "maths",
-        goalHours = 10f,
-        subjectId = 5,
-        subjectColor = blueGradient
-    ),
-    SubjectModel(
-        name = "social study",
-        goalHours = 10f,
-        subjectId = 6,
-        subjectColor = pinkOrangeGradient
-    )
-)
 
 
 @Composable
@@ -137,7 +44,7 @@ fun HomeScreen(
     * */
 
 
-    AddNewSubjectDialog(
+    AddNewSubjectDialogBox(
         homeScreenEvents = homeScreenEvents,
         homeScreenState = homeScreenState,
         subjectSelectedColor= homeScreenState.colorSelected,
@@ -151,6 +58,15 @@ fun HomeScreen(
             ))
         },
         isDialogOpened = homeScreenState.subjectDialogShowUp
+    )
+    DeleteSessionDialogBox(
+        onDismiss = {
+            homeScreenEvents(HomeScreenEvents.DeleteSessionDialogDismissed())
+        },
+        onConfirm = {
+            homeScreenEvents(HomeScreenEvents.DeleteSessionDialogConfirmed())
+        },
+        isDialogOpened = homeScreenState.deleteSessionDialogShowUp
     )
 
     LazyColumn(
@@ -169,7 +85,7 @@ fun HomeScreen(
         }
         item {
             SubjectsSection(
-                subjectsList,
+                homeScreenState.subjectList,
                 onAddSubjectClicked = {
                     homeScreenEvents(HomeScreenEvents.AddNewSubjectBtnClicked())
                 }
@@ -202,8 +118,11 @@ fun HomeScreen(
         item {
             SectionHeader(sectionTitle = stringResource(R.string.recently_studied_header))
         }
-        if (recentlyStudiedSessions.isNotEmpty()){
-            RecentlyStudyList(recentlyStudiedSessions)
+        if (homeScreenState.recentlyStudySessionsList.isNotEmpty()){
+            recentlyStudyList(
+                homeScreenState.recentlyStudySessionsList,
+                homeScreenEvents = homeScreenEvents
+            )
         }
         else{
             item{

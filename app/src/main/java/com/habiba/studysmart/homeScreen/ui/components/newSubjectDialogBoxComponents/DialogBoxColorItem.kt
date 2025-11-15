@@ -1,6 +1,5 @@
-package com.habiba.studysmart.homeScreen.ui.components.dialogBoxComponents
+package com.habiba.studysmart.homeScreen.ui.components.newSubjectDialogBoxComponents
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

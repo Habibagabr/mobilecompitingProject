@@ -1,4 +1,4 @@
-package com.habiba.studysmart.homeScreen.ui.components.dialogBoxComponents
+package com.habiba.studysmart.homeScreen.ui.components.newSubjectDialogBoxComponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow

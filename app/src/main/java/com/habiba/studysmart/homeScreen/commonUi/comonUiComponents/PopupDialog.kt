@@ -1,9 +1,8 @@
-package com.habiba.studysmart.homeScreen.ui.components.dialogBoxComponents
+package com.habiba.studysmart.homeScreen.commonUi.comonUiComponents
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,20 +18,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import com.habiba.studysmart.R
-import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
-import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenState
-import com.habiba.studysmart.homeScreen.util.InputFieldOptions
-import com.habiba.studysmart.homeScreen.util.SubjectsColors
 
 @Composable
-fun AddNewSubjectDialog(
-    homeScreenEvents: (HomeScreenEvents)->Unit,
-    homeScreenState: HomeScreenState,
-    subjectSelectedColor: SubjectsColors = SubjectsColors.PurpleGradient,
-    isDialogOpened: Boolean,
+fun PopupDialog(
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit
-){
+    onConfirm: () -> Unit,
+    isDialogOpened: Boolean,
+    confirmBtnText:Int,
+    dismissBtnText:Int,
+    title:Int,
+    titleIcon: Int,
+    content: @Composable ()->Unit
+    ) {
     if(isDialogOpened) {
         AlertDialog(
             containerColor = MaterialTheme.colorScheme.surface,
@@ -45,65 +42,42 @@ fun AddNewSubjectDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.img_books),
+                        painter = painterResource(titleIcon),
                         modifier = Modifier.size(dimensionResource(R.dimen.add_subject_dialoge_icon_size)),
                         contentDescription = null
                     )
                     Text(
-                        text = stringResource(R.string.add_subject_dialog_title),
+                        text = stringResource(title),
                         style = MaterialTheme.typography.headlineMedium.copy(fontSize=dimensionResource(R.dimen.dialog_box_headline_size).value.sp),
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             },
             text = {
-                Column (
-                    verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.add_subject_dialog_spacedby_vertical_element))
-                ){
-                    // we create enum class of the colors to be generically updated and read here
-                    DialogBoxColorsTab(
-                        colorsList = SubjectsColors.entries,
-                        subjectSelectedColor,
-                        homeScreenEvents
-                    )
-                    NewSubjectInputField(
-                        homeScreenEvents = { homeScreenEvents(it) },
-                        homeScreenState= homeScreenState,
-                        inputFieldLabel = stringResource(R.string.add_subject_dialog_subject_name_input_field_label),
-                        inputFieldOption = InputFieldOptions.SubjectName
-                    )
-                    NewSubjectInputField(
-                        homeScreenEvents = { homeScreenEvents(it) },
-                        homeScreenState= homeScreenState,
-                        inputFieldLabel = stringResource(R.string.add_subject_dialog_hour_goal_input_field_label),
-                        inputFieldOption = InputFieldOptions.GoalHour
-                    )
-
-                }
-                },
+              content()
+            },
             dismissButton = {
                 Text(
-                    text = stringResource(R.string.add_subject_dialog_dismiss_btn),
+                    text = stringResource(dismissBtnText),
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier
                         .padding(end = dimensionResource(R.dimen.add_subject_dialoge_spacedby))
                         .clickable (
-                        onClick = { onDismiss() },
-                        enabled = true
+                            onClick = { onDismiss() },
+                            enabled = true
                         )
                 )
 
             },
             confirmButton = {
                 Text(
-                    text = stringResource(R.string.add_subject_dialog_confirm_btn),
+                    text = stringResource(confirmBtnText),
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.
                     clickable (
                         onClick = { onConfirm() },
-                        enabled = true,
                     )
                 )
             },

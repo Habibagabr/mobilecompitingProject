@@ -18,10 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.habiba.studysmart.R
 import com.habiba.studysmart.homeScreen.domain.model.SessionModel
+import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
 
 @Composable
 fun RecentlyStudySessionCard(
-    subject: SessionModel
+    subject: SessionModel,
+    homeScreenEvents: (HomeScreenEvents)->Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -58,7 +60,8 @@ fun RecentlyStudySessionCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Icon(
-                modifier = Modifier.clickable {  },
+                modifier = Modifier.clickable {
+                    homeScreenEvents(HomeScreenEvents.DeleteSessionClicked(subject.sessionId))},
                 imageVector = Icons.Default.Delete,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
