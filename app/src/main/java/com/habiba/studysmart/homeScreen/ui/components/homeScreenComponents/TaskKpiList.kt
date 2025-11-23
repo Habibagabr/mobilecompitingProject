@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
+import com.habiba.studysmart.commonUi.components.TasksKpiCard
 
 @Composable
 fun TaskKpiList(){

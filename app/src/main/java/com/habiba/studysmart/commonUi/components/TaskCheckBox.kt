@@ -1,4 +1,4 @@
-package com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents
+package com.habiba.studysmart.commonUi.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.border
@@ -6,14 +6,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import com.habiba.studysmart.R
 import com.habiba.studysmart.homeScreen.util.PriorityLevel
 
@@ -38,7 +37,7 @@ fun TaskCheckBox(
     ){
             AnimatedVisibility(isCompleted) {
                 Icon(
-                    imageVector = Icons.Default.Done,
+                    painter = painterResource(R.drawable.img_books),
                     contentDescription = null,
                     tint = PriorityLevel.getPriorityColor(priorityLevel.value)
 

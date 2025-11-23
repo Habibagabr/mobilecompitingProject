@@ -1,4 +1,4 @@
-package com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents
+package com.habiba.studysmart.commonUi.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,7 +16,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextDecoration
 import com.habiba.studysmart.R
 import com.habiba.studysmart.homeScreen.domain.model.TaskModel
-import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenState
 import com.habiba.studysmart.homeScreen.util.PriorityLevel
 
 @Composable
@@ -35,9 +34,9 @@ fun UpcomingTaskCard(
         verticalAlignment = Alignment.CenterVertically
     ){
         TaskCheckBox(
-            priorityLevel=PriorityLevel.getPriorityLevel(task.taskPriority),
-            isCompleted= task.isCompleted,
-            onCheckBoxClicked= { onCheckBoxClicked() }
+            priorityLevel = PriorityLevel.getPriorityLevel(task.taskPriority),
+            isCompleted = task.isCompleted,
+            onCheckBoxClicked = { onCheckBoxClicked() }
         )
         Column(
             horizontalAlignment = Alignment.Start,

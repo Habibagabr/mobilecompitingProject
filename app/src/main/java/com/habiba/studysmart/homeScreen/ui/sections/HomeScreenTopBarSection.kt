@@ -20,7 +20,6 @@ fun HomeScreenTopBarSection(){
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(R.dimen.home_screen_top_bar_top_vertical_padding))
         ){
         Column(
             horizontalAlignment = Alignment.Start,

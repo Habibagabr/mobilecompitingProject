@@ -1,4 +1,4 @@
-package com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents
+package com.habiba.studysmart.commonUi.components
 
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -8,7 +8,7 @@ import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
 fun LazyListScope.recentlyStudyList(recentlyStudiedSessions: List<SessionModel> , homeScreenEvents: (HomeScreenEvents)->Unit = {}) {
     items(recentlyStudiedSessions){item ->
         RecentlyStudySessionCard(
-            subject =item,
+            subject = item,
             homeScreenEvents = homeScreenEvents
 
         )

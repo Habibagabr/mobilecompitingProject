@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
-import com.habiba.studysmart.homeScreen.commonUi.comonUiComponents.PopupDialog
+import com.habiba.studysmart.commonUi.components.PopupDialog
 import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
 import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenState
 import com.habiba.studysmart.homeScreen.util.InputFieldOptions

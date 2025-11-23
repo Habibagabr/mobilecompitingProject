@@ -14,8 +14,9 @@
 
     <string name="upcoming_tasks_header">Upcoming Tasks</string>
     <string name="add_task_text">You don\'t have any upcoming tasks.\n Click the + button in subject screen to add new task.</string>
-
+    <string name="do_not_have_completed_task_text">You don\'t have any completed tasks \n Click the check box on completion of task.</string>
     <string name="recently_studied_header">Recently Study Sessions</string>
+    <string name="completed_task_header">Completed Tasks</string>
     <string name="add_session_text">You don\'t have any recent study sessions. \n Start a study session to begin recording your progress..</string>
     <string name="add_subject_dialog_title">Add/Update New Subject</string>
     <string name="add_subject_dialog_confirm_btn">Add</string>
@@ -26,6 +27,24 @@
     <string name="cancel">Cancel</string>
     <string name="delete_session_dialog_title">Delete Session</string>
     <string name="delete_session_dialog_content">Are you sure, you want to delete this\nsession? Your studied hours will be\nreduced by this session time. This action\ncan not be undo.</string>
+    <string name="onboarding_welcome_text">Welcome to Smarteo</string>
+    <string name="sign_up">Sign up</string>
+    <string name="onboarding_welcome_sub_text">Turn every study session into a productive experience with tools make mastering subjects easier</string>
+    <string name="log_in">Log in</string>
+    <string name="auth_welcome">Welcome back </string>
+    <string name="auth_welcome_sub">please fill in your data to continue</string>
+    <string name="email">Email</string>
+    <string name="email_placeholder">please enter your email</string>
+    <string name="password">password</string>
+    <string name="password_placeholder">please enter your password</string>
+    <string name="alternative_sign_up">Don\'t Have An Account ?</string>
+    <string name="auth_Sign_up_welcome">New Account</string>
+    <string name="auth_sign_up_welcome_sub">Sign up and get Started</string>
+    <string name="alternative_log_in">Already Have An Account ?</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password_placeholder">please enter your password again</string>
+    <string name="user_name_label">user name</string>
+    <string name="user_name_placeholder">enter a valid username</string>
 
 
 </resources>

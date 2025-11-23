@@ -1,4 +1,4 @@
-package com.habiba.studysmart.homeScreen.commonUi.comonUiComponents
+package com.habiba.studysmart.commonUi.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

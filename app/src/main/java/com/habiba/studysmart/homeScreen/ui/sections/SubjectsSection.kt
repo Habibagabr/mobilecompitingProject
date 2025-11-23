@@ -16,8 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
 import com.habiba.studysmart.homeScreen.domain.model.SubjectModel
-import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.EmptySection
-import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.SectionHeader
+import com.habiba.studysmart.commonUi.components.EmptySection
+import com.habiba.studysmart.commonUi.components.SectionHeader
 import com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents.SubjectsList
 
 

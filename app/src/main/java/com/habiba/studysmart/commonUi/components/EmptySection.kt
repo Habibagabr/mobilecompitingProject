@@ -1,4 +1,4 @@
-package com.habiba.studysmart.homeScreen.ui.components.homeScreenComponents
+package com.habiba.studysmart.commonUi.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
