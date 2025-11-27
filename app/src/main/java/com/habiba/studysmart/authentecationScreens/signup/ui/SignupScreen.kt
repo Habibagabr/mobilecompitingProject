@@ -11,22 +11,31 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.habiba.studysmart.R
 import com.habiba.studysmart.authentecationScreens.InputFieldType
-import com.habiba.studysmart.authentecationScreens.commonComponent.AuthenticationScreenTemplate
-import com.habiba.studysmart.authentecationScreens.commonComponent.CustomizedInputField
+import com.habiba.studysmart.authentecationScreens.common.commonComponent.AuthenticationScreenTemplate
+import com.habiba.studysmart.authentecationScreens.common.commonComponent.CustomizedInputField
+import com.habiba.studysmart.authentecationScreens.signup.ui.viewModel.SignupScreenEvents
+import com.habiba.studysmart.authentecationScreens.signup.ui.viewModel.SignupScreenState
 import com.habiba.studysmart.navigation.LoginScreen
+import com.habiba.studysmart.navigation.OnBoardingScreen
 
 @Composable
-fun SignupScreen(navController: NavController) {
+fun SignupScreen(
+    navController: NavController,
+    state : SignupScreenState,
+    onEvent: (SignupScreenEvents) -> Unit
+) {
     AuthenticationScreenTemplate(
         screenTitle = stringResource(R.string.auth_Sign_up_welcome),
         screenSubTitle = stringResource(R.string.auth_sign_up_welcome_sub),
         btnText = stringResource(R.string.sign_up),
         alternativeOption = stringResource(R.string.alternative_log_in),
         subBtnTxt = stringResource(R.string.log_in),
-        onSubBtnClicked = { navController.navigate(LoginScreen) }
+        onSubBtnClicked = { navController.navigate(LoginScreen){
+            popUpTo(OnBoardingScreen) { inclusive = false }
 
-
-        ){
+        } },
+        onBtnClicked={onEvent(SignupScreenEvents.SignupPressed())}
+    ){
         Column(
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = dimensionResource(R.dimen.text_field_space)),
@@ -35,26 +44,52 @@ fun SignupScreen(navController: NavController) {
             CustomizedInputField(
                 label = stringResource(R.string.user_name_label),
                 placeholder = stringResource(R.string.user_name_placeholder),
-                inputFieldType = InputFieldType.Name
-
+                input = state.userName,
+                onValueChange = {newChar ->
+                    onEvent(SignupScreenEvents.UserNameChanged(newChar))},
+                inputType = InputFieldType.Name,
+                errorMsg = state.userNameError,
+                error = !state.isUserNameValid
             )
 
             CustomizedInputField(
                 label = stringResource(R.string.email),
                 placeholder = stringResource(R.string.email_placeholder),
-                inputFieldType = InputFieldType.Email
+                onValueChange = {
+                    newChar ->
+                    onEvent(SignupScreenEvents.EmailChanged(newChar))
+                },
+                input = state.userEmail,
+                inputType = InputFieldType.Email,
+                errorMsg = state.emailError,
+                error = !state.isEmailValid
 
             )
 
             CustomizedInputField(
                 label = stringResource(R.string.password),
                 placeholder = stringResource(R.string.password_placeholder),
-                inputFieldType = InputFieldType.Password
+                onValueChange = {
+                    newChar ->
+                    onEvent(SignupScreenEvents.PasswordChanged(newChar))
+                },
+                input = state.userPassword,
+                inputType = InputFieldType.Password,
+                errorMsg = state.passwordError,
+                error = !state.isPasswordValid
             )
             CustomizedInputField(
                 label = stringResource(R.string.confirm_password),
                 placeholder = stringResource(R.string.confirm_password_placeholder),
-                inputFieldType = InputFieldType.ConfirmPassword
+                onValueChange = {
+                        newChar ->
+                    onEvent(SignupScreenEvents.ConfirmPasswordChanged(newChar))
+                },
+                input = state.confirmPassword,
+                inputType = InputFieldType.ConfirmPassword,
+                errorMsg = state.confirmPasswordError,
+                error = !state.isConfirmPasswordValid
+
             )
 
         }

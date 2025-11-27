@@ -65,6 +65,7 @@
     <dimen name="round_inputField_corner_shape">10dp</dimen>
     <dimen name="text_field_space">24dp</dimen>
     <dimen name="auth_screen_bottom_padding">150dp</dimen>
+    <dimen name="input_error_space">5dp</dimen>
 
 
 </resources>

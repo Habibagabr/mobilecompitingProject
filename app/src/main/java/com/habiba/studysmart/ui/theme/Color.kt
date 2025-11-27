@@ -85,3 +85,8 @@ val greenGradient = listOf(Color(0xFF99f2c8), Color(0xFF1f4037))
 val green=Color(0xFF356C58)
 val yellow=Color(0xFFD99A56)
 val red=Color(0xFF984343)
+
+
+val constantBlackBackground=Color(0xFF121318)
+val constantWhite=Color(0xFFE2E2E9)
+val constantGray=Color(0xFF44474F).copy(alpha = 0.12f)

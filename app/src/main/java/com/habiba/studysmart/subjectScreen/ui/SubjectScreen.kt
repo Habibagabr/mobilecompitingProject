@@ -13,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
-import com.habiba.studysmart.commonUi.components.EmptySection
-import com.habiba.studysmart.commonUi.components.SectionHeader
-import com.habiba.studysmart.commonUi.components.recentlyStudyList
-import com.habiba.studysmart.commonUi.components.upComingTasksList
+import com.habiba.studysmart.common.components.EmptySection
+import com.habiba.studysmart.common.components.SectionHeader
+import com.habiba.studysmart.common.components.recentlyStudyList
+import com.habiba.studysmart.common.components.upComingTasksList
 import com.habiba.studysmart.homeScreen.domain.model.SessionModel
 import com.habiba.studysmart.homeScreen.domain.model.TaskModel
 import com.habiba.studysmart.subjectScreen.ui.components.SubjectScreenFAB

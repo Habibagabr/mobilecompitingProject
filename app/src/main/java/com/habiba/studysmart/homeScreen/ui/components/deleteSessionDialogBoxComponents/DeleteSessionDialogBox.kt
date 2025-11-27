@@ -5,7 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
-import com.habiba.studysmart.commonUi.components.PopupDialog
+import com.habiba.studysmart.common.components.PopupDialog
 
 @Composable
 fun DeleteSessionDialogBox(

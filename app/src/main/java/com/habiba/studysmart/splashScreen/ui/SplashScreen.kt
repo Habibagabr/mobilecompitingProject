@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.habiba.studysmart.R
 import com.habiba.studysmart.navigation.OnBoardingScreen
+import com.habiba.studysmart.navigation.SplashScreen
 import kotlinx.coroutines.delay
 
 // we need to connect this with a view model
@@ -37,7 +38,9 @@ fun SplashScreen(navController: NavController) {
     LaunchedEffect(Unit) {
         visible = true
         delay(1000)
-        navController.navigate(OnBoardingScreen)
+        navController.navigate(OnBoardingScreen){
+            popUpTo(SplashScreen) { inclusive = true }
+        }
     }
 
 

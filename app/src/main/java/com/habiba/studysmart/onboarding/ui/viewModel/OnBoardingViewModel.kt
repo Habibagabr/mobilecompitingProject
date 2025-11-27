@@ -1,4 +1,4 @@
-package com.habiba.studysmart.authentecationScreens.onboarding.ui.viewModel
+package com.habiba.studysmart.onboarding.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

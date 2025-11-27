@@ -19,6 +19,8 @@ kotlinxSerializationJson = "1.9.0"
 
 
 
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -41,6 +43,8 @@ compose-google-fonts= { group = "androidx.compose.ui", name="ui-text-google-font
 #type-safe navigation
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+
+
 
 
 [plugins]

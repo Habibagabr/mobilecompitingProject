@@ -1,4 +1,4 @@
-package com.habiba.studysmart.commonUi.components
+package com.habiba.studysmart.common.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.border

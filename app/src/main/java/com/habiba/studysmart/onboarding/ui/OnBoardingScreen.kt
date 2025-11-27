@@ -1,4 +1,4 @@
-package com.habiba.studysmart.authentecationScreens.onboarding.ui
+package com.habiba.studysmart.onboarding.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,11 +19,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import com.habiba.studysmart.R
-import com.habiba.studysmart.authentecationScreens.commonComponent.CustomizedButton
-import com.habiba.studysmart.authentecationScreens.onboarding.ui.viewModel.OnBoardingEvents
-import com.habiba.studysmart.authentecationScreens.onboarding.ui.viewModel.OnBoardingState
+import com.habiba.studysmart.authentecationScreens.common.commonComponent.CustomizedButton
+import com.habiba.studysmart.onboarding.ui.viewModel.OnBoardingEvents
+import com.habiba.studysmart.onboarding.ui.viewModel.OnBoardingState
 import com.habiba.studysmart.navigation.LoginScreen
 import com.habiba.studysmart.navigation.SignupScreen
+import com.habiba.studysmart.ui.theme.constantBlackBackground
+import com.habiba.studysmart.ui.theme.constantWhite
 
 @Composable
 fun OnBoardingScreen(
@@ -34,7 +36,7 @@ fun OnBoardingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.background)
+            .background(color = constantBlackBackground)
             .padding(horizontal = dimensionResource(R.dimen.app_horizontal_padding)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
@@ -42,8 +44,6 @@ fun OnBoardingScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.authen_txt_space))
-
-
         ) {
             Image(
                 painter = painterResource(R.drawable.planning),
@@ -54,12 +54,12 @@ fun OnBoardingScreen(
             Text(
                 text = stringResource(R.string.onboarding_welcome_text),
                 style = MaterialTheme.typography.displaySmall,
-                color = MaterialTheme.colorScheme.onBackground
+                color = constantWhite
             )
             Text(
                 text = stringResource(R.string.onboarding_welcome_sub_text),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = constantWhite,
                 textAlign = TextAlign.Center
             )
 
@@ -78,7 +78,8 @@ fun OnBoardingScreen(
             CustomizedButton(
                 onClick = {
                     onEvent(OnBoardingEvents.SignUpPressed)
-                    navController.navigate(SignupScreen) },
+                    navController.navigate(SignupScreen)
+                },
                 text = stringResource(R.string.sign_up),
                 pressingState = state.signUpPressed
             )

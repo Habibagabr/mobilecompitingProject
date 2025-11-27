@@ -1,4 +1,4 @@
-package com.habiba.studysmart.commonUi.components
+package com.habiba.studysmart.common.components
 
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items

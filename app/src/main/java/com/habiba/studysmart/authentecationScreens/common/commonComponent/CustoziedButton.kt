@@ -1,4 +1,4 @@
-package com.habiba.studysmart.authentecationScreens.commonComponent
+package com.habiba.studysmart.authentecationScreens.common.commonComponent
 
 import android.provider.CalendarContract
 import androidx.compose.foundation.background
@@ -11,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
@@ -20,6 +21,7 @@ import com.habiba.studysmart.R
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import com.habiba.studysmart.ui.theme.blueGradient
+import com.habiba.studysmart.ui.theme.constantGray
 
 
 @Composable
@@ -31,7 +33,7 @@ fun CustomizedButton(
 
     val gradientBrush = Brush.verticalGradient(blueGradient)
 
-    val disabledColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
+    val disabledColor = constantGray
 
     Box(
         modifier = Modifier
@@ -41,7 +43,7 @@ fun CustomizedButton(
             .clickable{ onClick() }
             .padding(dimensionResource(R.dimen.authen_btn_space))
             ,
-        contentAlignment = androidx.compose.ui.Alignment.Center
+        contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,

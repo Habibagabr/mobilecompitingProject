@@ -3,7 +3,7 @@ package com.habiba.studysmart.subjectScreen.ui.sections
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
-import com.habiba.studysmart.commonUi.components.TasksKpiCard
+import com.habiba.studysmart.common.components.TasksKpiCard
 import com.habiba.studysmart.subjectScreen.ui.components.ProgressIndicator
 
 @Composable

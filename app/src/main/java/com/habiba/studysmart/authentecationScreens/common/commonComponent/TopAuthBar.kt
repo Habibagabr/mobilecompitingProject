@@ -1,4 +1,4 @@
-package com.habiba.studysmart.authentecationScreens.commonComponent
+package com.habiba.studysmart.authentecationScreens.common.commonComponent
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
