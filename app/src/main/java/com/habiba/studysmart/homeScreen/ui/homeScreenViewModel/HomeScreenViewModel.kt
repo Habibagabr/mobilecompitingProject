@@ -194,7 +194,7 @@ class HomeScreenViewModel(): ViewModel() {
     }
 
 
-    fun homeScreenEventsHandler(event: HomeScreenEvents){
+    fun onEvent(event: HomeScreenEvents){
         when(event){
             is HomeScreenEvents.AddNewSubjectBtnClicked -> onAddNewSubjectBtnClicked()
             is HomeScreenEvents.SubjectColorSelected -> onSubjectColorSelected(event.subjectColor)

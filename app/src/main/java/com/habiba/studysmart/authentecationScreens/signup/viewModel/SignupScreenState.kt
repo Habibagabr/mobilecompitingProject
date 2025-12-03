@@ -1,4 +1,4 @@
-package com.habiba.studysmart.authentecationScreens.signup.ui.viewModel
+package com.habiba.studysmart.authentecationScreens.signup.viewModel
 
 import com.habiba.studysmart.common.strings.EMPTY_STRING
 
@@ -15,4 +15,6 @@ data class SignupScreenState (
     val isEmailValid: Boolean = true ,
     val isPasswordValid: Boolean = true,
     val isConfirmPasswordValid: Boolean = true,
+    val generalError :String ="",
+    val isGeneralError: Boolean = false
 )

@@ -13,8 +13,8 @@ import com.habiba.studysmart.R
 import com.habiba.studysmart.authentecationScreens.InputFieldType
 import com.habiba.studysmart.authentecationScreens.common.commonComponent.AuthenticationScreenTemplate
 import com.habiba.studysmart.authentecationScreens.common.commonComponent.CustomizedInputField
-import com.habiba.studysmart.authentecationScreens.signup.ui.viewModel.SignupScreenEvents
-import com.habiba.studysmart.authentecationScreens.signup.ui.viewModel.SignupScreenState
+import com.habiba.studysmart.authentecationScreens.signup.viewModel.SignupScreenEvents
+import com.habiba.studysmart.authentecationScreens.signup.viewModel.SignupScreenState
 import com.habiba.studysmart.navigation.LoginScreen
 import com.habiba.studysmart.navigation.OnBoardingScreen
 
@@ -34,7 +34,9 @@ fun SignupScreen(
             popUpTo(OnBoardingScreen) { inclusive = false }
 
         } },
-        onBtnClicked={onEvent(SignupScreenEvents.SignupPressed())}
+        onBtnClicked={onEvent(SignupScreenEvents.SignupPressed())},
+        generalErrorMsg = state.generalError,
+        isGeneralError = state.isGeneralError
     ){
         Column(
             modifier = Modifier.fillMaxWidth()

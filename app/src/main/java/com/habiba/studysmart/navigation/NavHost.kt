@@ -9,15 +9,20 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.habiba.studysmart.authentecationScreens.login.ui.LoginScreen
 import com.habiba.studysmart.authentecationScreens.login.ui.viewModel.LoginViewModel
 import com.habiba.studysmart.onboarding.ui.OnBoardingScreen
 import com.habiba.studysmart.onboarding.ui.viewModel.OnBoardingViewModel
 import com.habiba.studysmart.authentecationScreens.signup.ui.SignupScreen
-import com.habiba.studysmart.authentecationScreens.signup.ui.viewModel.SignupViewModel
+import com.habiba.studysmart.authentecationScreens.signup.viewModel.SignupViewModel
+import com.habiba.studysmart.homeScreen.ui.HomeScreen
+import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenViewModel
+import com.habiba.studysmart.navigation.Home
 import com.habiba.studysmart.navigation.LoginScreen
 import com.habiba.studysmart.navigation.SignupScreen
+import com.habiba.studysmart.splashScreen.viewModel.SplashScreenViewModel
 
 @Composable
 fun NavGraph() {
@@ -44,9 +49,18 @@ fun NavGraph() {
             )
         }
     ) {
+
         composable<SplashScreen> {
-            SplashScreen(navController)
+            val splashScreenViewModel : SplashScreenViewModel = hiltViewModel()
+            val splashScreenState = splashScreenViewModel.state
+            val state by splashScreenState.collectAsState()
+            SplashScreen(
+                navController,
+                state = state,
+                onEvent = splashScreenViewModel::onEvent
+            )
         }
+
         composable<OnBoardingScreen> {
             val onBoardingViewModel: OnBoardingViewModel = viewModel()
             val onBoardingState = onBoardingViewModel.onBoardingState
@@ -69,7 +83,7 @@ fun NavGraph() {
            )
         }
         composable<SignupScreen> {
-            val signupViewModel : SignupViewModel = viewModel()
+            val signupViewModel : SignupViewModel = hiltViewModel()
             val signupState = signupViewModel.signupState
             val state by signupState.collectAsState()
             SignupScreen(
@@ -77,6 +91,18 @@ fun NavGraph() {
                 state= state,
                 onEvent = signupViewModel::onEvent
             )
+        }
+
+        composable<Home> {
+            val homeViewModel : HomeScreenViewModel = viewModel()
+            val homeState = homeViewModel.homeScreenState
+            val state by homeState.collectAsState()
+            HomeScreen(
+                navController = navController,
+                homeScreenState = state ,
+                homeScreenEvents = homeViewModel::onEvent
+            )
+
         }
 
 

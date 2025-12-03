@@ -1,4 +1,4 @@
-package com.habiba.studysmart.authentecationScreens.signup.ui.viewModel
+package com.habiba.studysmart.authentecationScreens.signup.viewModel
 
 sealed class SignupScreenEvents() {
     class UserNameChanged(val userName:String):SignupScreenEvents()

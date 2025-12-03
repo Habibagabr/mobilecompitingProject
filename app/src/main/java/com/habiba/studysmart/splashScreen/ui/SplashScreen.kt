@@ -1,5 +1,7 @@
 package com.habiba.studysmart.splashScreen.ui
 
+import android.app.Application
+import android.content.SharedPreferences
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
@@ -25,24 +27,42 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.habiba.studysmart.R
+import com.habiba.studysmart.navigation.Home
 import com.habiba.studysmart.navigation.OnBoardingScreen
 import com.habiba.studysmart.navigation.SplashScreen
+import com.habiba.studysmart.splashScreen.viewModel.SplashScreenEvents
+import com.habiba.studysmart.splashScreen.viewModel.SplashScreenState
 import kotlinx.coroutines.delay
 
 // we need to connect this with a view model
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashScreen(
+    navController: NavController,
+    state: SplashScreenState,
+    onEvent: (SplashScreenEvents) -> Unit
+) {
 
     var visible by remember { mutableStateOf(false) }
 
+
     LaunchedEffect(Unit) {
         visible = true
+        onEvent(SplashScreenEvents.Loading)
+
+    }
+    LaunchedEffect(key1 = state.userExistence) {
         delay(1000)
-        navController.navigate(OnBoardingScreen){
-            popUpTo(SplashScreen) { inclusive = true }
+        if (state.userExistence) navController.navigate(Home){
+            popUpTo(SplashScreen){
+                inclusive = true
+            }
+        }
+        else navController.navigate(OnBoardingScreen){
+            popUpTo(SplashScreen){
+                inclusive = true
+            }
         }
     }
-
 
 
     Column(

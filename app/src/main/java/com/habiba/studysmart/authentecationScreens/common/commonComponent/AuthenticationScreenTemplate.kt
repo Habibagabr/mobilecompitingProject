@@ -28,6 +28,8 @@ fun AuthenticationScreenTemplate(
     alternativeOption: String ,
     subBtnTxt: String ,
     onSubBtnClicked: () -> Unit = {},
+    generalErrorMsg :String ="",
+    isGeneralError : Boolean = false ,
     screenContent: @Composable () -> Unit
 ) {
     Box(
@@ -60,8 +62,16 @@ fun AuthenticationScreenTemplate(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
+                if(isGeneralError){
+                    Text(
+                        text = generalErrorMsg,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
                 CustomizedButton(
                     onClick = onBtnClicked,
                     text = btnText

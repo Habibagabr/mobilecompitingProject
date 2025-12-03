@@ -8,5 +8,6 @@ data class TaskModel(
     val isCompleted:Boolean,
     val relatedToSubject :String ="",
     val taskSubjectId :Int =0,
-    val taskId :Int =0
+    val taskId :Int =0,
+    val taskDate:String =""
 )

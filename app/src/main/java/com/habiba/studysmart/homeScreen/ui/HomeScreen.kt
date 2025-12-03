@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import com.habiba.studysmart.R
 import com.habiba.studysmart.homeScreen.ui.components.deleteSessionDialogBoxComponents.DeleteSessionDialogBox
 import com.habiba.studysmart.homeScreen.ui.components.newSubjectDialogBoxComponents.AddNewSubjectDialogBox
@@ -28,7 +29,8 @@ import com.habiba.studysmart.homeScreen.ui.sections.SubjectsSection
 @Composable
 fun HomeScreen(
     homeScreenState: HomeScreenState = HomeScreenState(),
-    homeScreenEvents: (HomeScreenEvents) -> Unit = {}
+    homeScreenEvents: (HomeScreenEvents) -> Unit = {},
+    navController: NavHostController,
 ) {
 
     // ------- Dialogs -------
