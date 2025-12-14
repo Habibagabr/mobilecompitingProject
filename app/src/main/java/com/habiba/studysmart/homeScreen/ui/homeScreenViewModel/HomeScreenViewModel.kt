@@ -1,204 +1,54 @@
 package com.habiba.studysmart.homeScreen.ui.homeScreenViewModel
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import com.habiba.studysmart.homeScreen.domain.model.SessionModel
-import com.habiba.studysmart.homeScreen.domain.model.SubjectModel
-import com.habiba.studysmart.homeScreen.domain.model.TaskModel
+import androidx.lifecycle.viewModelScope
+import com.habiba.studysmart.data.model.UserHomeDataModel
+import com.habiba.studysmart.domain.model.SessionDomainModel
+import com.habiba.studysmart.domain.model.SubjectDomainModel
+import com.habiba.studysmart.domain.model.UserHomeDataDomainModel
+import com.habiba.studysmart.homeScreen.domain.usecases.usecasesImplementation.MarkTaskAsCompletedUsecase
+import com.habiba.studysmart.homeScreen.domain.usecases.usecasesInterface.IAddNewSubjectUseCaseAndUpdateUser
+import com.habiba.studysmart.homeScreen.domain.usecases.usecasesInterface.IGetUserHomeData
+import com.habiba.studysmart.homeScreen.domain.usecases.usecasesInterface.IGetUserIdUsecase
+import com.habiba.studysmart.homeScreen.domain.usecases.usecasesInterface.ILogoutUsecase
+import com.habiba.studysmart.homeScreen.domain.usecases.usecasesInterface.IMarkTaskAsCompletedUseCase
 import com.habiba.studysmart.homeScreen.util.InputFieldsErrors
 import com.habiba.studysmart.homeScreen.util.SubjectsColors
-import com.habiba.studysmart.ui.theme.blueGradient
-import com.habiba.studysmart.ui.theme.darkBlueGradient
-import com.habiba.studysmart.ui.theme.greenGradient
-import com.habiba.studysmart.ui.theme.pinkOrangeGradient
-import com.habiba.studysmart.ui.theme.purpleGradient
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlin.collections.listOf
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import javax.inject.Inject
+import kotlin.collections.emptyList
 
-
-class HomeScreenViewModel(): ViewModel() {
+@RequiresApi(Build.VERSION_CODES.O)
+@HiltViewModel
+class HomeScreenViewModel@Inject constructor(
+    private val getUserIdUseCase: IGetUserIdUsecase,
+    private val getUserData: IGetUserHomeData,
+    private val addNewSubjectAndUpdateUser : IAddNewSubjectUseCaseAndUpdateUser,
+    private val markTaskAsCompletedUsecase: IMarkTaskAsCompletedUseCase,
+    private val logoutUsecase: ILogoutUsecase
+): ViewModel() {
     private val _homeScreenState: MutableStateFlow<HomeScreenState> = MutableStateFlow(HomeScreenState())
     val homeScreenState: StateFlow<HomeScreenState> = _homeScreenState
 
     init{
-        _homeScreenState.value = _homeScreenState.value.copy(
-            upComingList = listOf<TaskModel>(
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 2,
-                    taskDue = "22 oct 2025",
-                    isCompleted = true,
-                    taskId=6
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 0,
-                    taskDue = "22 oct 2025",
-                    isCompleted = false,
-                    taskId=7
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 2,
-                    taskDue = "22 oct 2025",
-                    isCompleted = true,
-                    taskId=1
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 1,
-                    taskDue = "22 oct 2025",
-                    isCompleted = true,
-                    taskId=2
-
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 0,
-                    taskDue = "22 oct 2025",
-                    isCompleted = false,
-                    taskId=3
-
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 2,
-                    taskDue = "22 oct 2025",
-                    isCompleted = true,
-                    taskId=4
-
-
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 2,
-                    taskDue = "22 oct 2025",
-                    isCompleted = true,
-                    taskId=5
-
-
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 1,
-                    taskDue = "22 oct 2025",
-                    isCompleted = true,
-                    taskId=0
-
-
-
-                ),
-                TaskModel(
-                    taskTitle = "meeting the career tasks on the playgaurd",
-                    taskPriority = 2,
-                    taskDue = "22 oct 2025",
-                    isCompleted = false,
-                    taskId=8
-
-                )
-
-            ),
-            subjectList = listOf(
-                SubjectModel(
-                        name = "English",
-                        goalHours = 10f,
-                        subjectId = 1,
-                        subjectColor = greenGradient
-                    ),
-            SubjectModel(
-                name = "arabic",
-                goalHours = 10f,
-                subjectId = 2,
-                subjectColor = pinkOrangeGradient
-
-
-            ),
-            SubjectModel(
-                name = "physics",
-                goalHours = 10f,
-                subjectId = 3,
-                subjectColor = darkBlueGradient
-            ),
-            SubjectModel(
-                name = "chemistry",
-                goalHours = 10f,
-                subjectId = 4,
-                subjectColor = purpleGradient
-            ),
-            SubjectModel(
-                name = "maths",
-                goalHours = 10f,
-                subjectId = 5,
-                subjectColor = blueGradient
-            ),
-                SubjectModel(
-                    name = "social study",
-                    goalHours = 10f,
-                    subjectId = 6,
-                    subjectColor = pinkOrangeGradient
-                )
-        ),
-            recentlyStudySessionsList= listOf(
-                SessionModel(
-                    relatedToSubject = "English",
-                    date= "22 oct 2022",
-                    duration= 2,
-                    sessionSubjectId=1,
-                    sessionId= 0 ,
-
-                    ),
-        SessionModel(
-            relatedToSubject = "arabic",
-            date= "22 oct 2022",
-            duration= 5,
-            sessionSubjectId=2,
-            sessionId= 1 ,
-        ),
-        SessionModel(
-            relatedToSubject = "physics",
-            date= "22 oct 2022",
-            duration= 10,
-            sessionSubjectId=3,
-            sessionId= 2 ,
-        ),
-        SessionModel(
-            relatedToSubject = "chemistry",
-            date= "22 oct 2022",
-            duration= 7,
-            sessionSubjectId=3,
-            sessionId= 3 ,
-        ),
-        SessionModel(
-            relatedToSubject = "maths",
-            date= "22 oct 2022",
-            duration= 6,
-            sessionSubjectId=4,
-            sessionId= 4 ,
-        ),
-        SessionModel(
-            relatedToSubject = "social study",
-            date= "22 oct 2022",
-            duration= 2,
-            sessionSubjectId=5,
-            sessionId= 5 ,
-        ),
-        )
-        )
+        onEvent(HomeScreenEvents.ScreenLoading())
     }
 
-
+    @RequiresApi(Build.VERSION_CODES.O)
     fun onEvent(event: HomeScreenEvents){
         when(event){
             is HomeScreenEvents.AddNewSubjectBtnClicked -> onAddNewSubjectBtnClicked()
             is HomeScreenEvents.SubjectColorSelected -> onSubjectColorSelected(event.subjectColor)
-            is HomeScreenEvents.NewSubjectDialogConfirmed -> onNewSubjectDialogConfirmed(event.subjectName,event.subjectGoalHours)
+            is HomeScreenEvents.NewSubjectDialogConfirmed -> onNewSubjectDialogConfirmed(event.subjectName,event.subjectGoalHours , event.colorSelected)
             is HomeScreenEvents.NewSubjectDialogDismissedOrCanceled -> onNewSubjectDialogDismissedOrCanceled()
             is HomeScreenEvents.SubjectNameFieldChanged -> onSubjectNameFieldChanged(event.newText)
             is HomeScreenEvents.GoalHourFieldChanged -> onGoalHourFieldChanged(event.newText)
@@ -206,6 +56,61 @@ class HomeScreenViewModel(): ViewModel() {
             is HomeScreenEvents.DeleteSessionClicked -> onDeleteSessionClicked(event.sessionId)
             is HomeScreenEvents.DeleteSessionDialogConfirmed -> deleteSessionDialogConfirmed(homeScreenState.value.currentlySessionDeletedId)
             is HomeScreenEvents.DeleteSessionDialogDismissed -> onDeleteSessionDialogDismissed()
+            is HomeScreenEvents.ScreenLoading -> onScreenLoaded()
+            is HomeScreenEvents.ValidSubject -> addNewSubject(event.subject)
+            is HomeScreenEvents.LogoutConfirmed -> onLogoutConfirmed()
+        }
+    }
+
+    private fun onLogoutConfirmed() {
+        logoutUsecase()
+
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun onScreenLoaded() {
+
+        viewModelScope.launch {
+
+            val userId = getUserIdUseCase()
+            if (userId == null || userId.isBlank()) {
+                Log.e("HomeVM", "Error: userId is null or empty")
+            }
+
+            Log.d("HomeVM", "Loading data for $userId")
+
+            val userData = getUserData(userId)
+
+            Log.d("HomeVM", "User data loaded successfully")
+
+            val subjects = userData.details?.mapNotNull { it.subject }.orEmpty()
+            val formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy")
+            val today = LocalDate.now()
+
+            val upcomingTasks = userData.details
+                ?.flatMap { subject ->
+                    subject.tasks.orEmpty().filter { task ->
+                        val date = LocalDate.parse(task.taskDate, formatter)
+
+                        !task.isCompleted && (date.isAfter(today) || date.isEqual(today))
+                    }
+                }
+                .orEmpty()
+
+            val sessions: List<SessionDomainModel> =
+                userData.details
+                    ?.flatMap { it.sessions.orEmpty() }
+                    ?: emptyList()
+
+
+            _homeScreenState.value = _homeScreenState.value.copy(
+                userData = userData,
+                screenLoaded = true,
+                subjectList = subjects,
+                upComingList = upcomingTasks,
+                recentlyStudySessionsList = sessions
+            )
         }
     }
 
@@ -234,14 +139,17 @@ class HomeScreenViewModel(): ViewModel() {
     }
 
     private fun onTaskCompleted(taskId: Int) {
-        _homeScreenState.value = _homeScreenState.value.copy(
-            upComingList = _homeScreenState.value.upComingList.map {
-                if(it.taskId==taskId)
-                    it.copy(isCompleted = !it.isCompleted)
-                else
-                    it
-            }
-        )
+        viewModelScope.launch {
+            markTaskAsCompletedUsecase(taskId)
+            _homeScreenState.value = _homeScreenState.value.copy(
+                upComingList = _homeScreenState.value.upComingList.map {
+                    if(it.taskId==taskId)
+                        it.copy(isCompleted = !it.isCompleted)
+                    else
+                        it
+                }
+            )
+        }
 
     }
 
@@ -270,32 +178,63 @@ class HomeScreenViewModel(): ViewModel() {
             deleteSessionDialogShowUp = false,
         )
 
-
-
     }
 
-    private fun onNewSubjectDialogConfirmed(subjectName: String, subjectGoalHours: String) {
-        val nameError=subjectNameValidation(subjectName)
-        val hoursError=subjectGoalHoursValidation(subjectGoalHours)
+    private fun onNewSubjectDialogConfirmed(subjectName: String, subjectGoalHours: String , chosenColors: SubjectsColors) {
+
+        val nameError = subjectNameValidation(subjectName)
+        val hoursError = subjectGoalHoursValidation(subjectGoalHours)
+
         _homeScreenState.value = _homeScreenState.value.copy(
             subjectError = nameError,
             goalHourError = hoursError,
-            isSubjectNameError = if(nameError==InputFieldsErrors.NoError.errorMsg)false else true,
-            isGoalHourError = if(hoursError==InputFieldsErrors.NoError.errorMsg)false else true,
-
+            isSubjectNameError = nameError != InputFieldsErrors.NoError.errorMsg,
+            isGoalHourError = hoursError != InputFieldsErrors.NoError.errorMsg,
+            subjectName = subjectName,
+            subjectGoalHours = subjectGoalHours
         )
 
+        if (!_homeScreenState.value.isSubjectNameError &&
+            !_homeScreenState.value.isGoalHourError
+        ) {
+            val subject = SubjectDomainModel(
+                name = subjectName,
+                goalHours = subjectGoalHours.toInt(),
+                userOwnerId = getUserIdUseCase()?:"",
+                actualHours = 0,
+                colorHex = _homeScreenState.value.colorSelected
+            )
+
+            onEvent(HomeScreenEvents.ValidSubject(subject))
+        }
+    }
+
+    fun addNewSubject(subject: SubjectDomainModel) {
+        viewModelScope.launch {
+            val updatedUserData = addNewSubjectAndUpdateUser(subject)
+
+            val subjects = updatedUserData.details?.mapNotNull { it.subject }.orEmpty()
+
+            _homeScreenState.value = _homeScreenState.value.copy(
+                userData = updatedUserData,
+                subjectDialogShowUp = false,
+                subjectName = "",
+                subjectGoalHours = "",
+                screenLoaded = true,
+                subjectList = subjects,
 
 
-
-
+            )
+        }
     }
 
     private fun subjectGoalHoursValidation(subjectGoalHours: String):String {
         return if(subjectGoalHours.isBlank())
             InputFieldsErrors.EmptyGoalHourField.errorMsg
         else if(subjectGoalHours<= 0.toString())
-            InputFieldsErrors.InvalidGoalHourField.errorMsg
+            InputFieldsErrors.InvalidGoalNegativeHourField.errorMsg
+        else if(subjectGoalHours<1.toString())
+            InputFieldsErrors.InvalidGoalSmallHourField.errorMsg
         else if(subjectGoalHours.any{!it.isDigit()})
             InputFieldsErrors.NoError.errorMsg
         else InputFieldsErrors.NoError.errorMsg
@@ -306,7 +245,7 @@ class HomeScreenViewModel(): ViewModel() {
     private fun subjectNameValidation(subjectName: String): String {
         return if(subjectName.isBlank())
             InputFieldsErrors.EmptySubjectNameField.errorMsg
-        else if(subjectName.any{!it.isLetterOrDigit()})
+        else if(subjectName.any { !(it.isLetterOrDigit() || it.isWhitespace()) })
             InputFieldsErrors.InvalidSubjectName.errorMsg
         else
             InputFieldsErrors.NoError.errorMsg

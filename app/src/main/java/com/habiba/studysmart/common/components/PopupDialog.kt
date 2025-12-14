@@ -1,5 +1,6 @@
 package com.habiba.studysmart.common.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,14 +22,14 @@ import com.habiba.studysmart.R
 
 @Composable
 fun PopupDialog(
-    onDismiss: () -> Unit,
-    onConfirm: () -> Unit,
+    onDismiss: () -> Unit= {},
+    onConfirm: () -> Unit={},
     isDialogOpened: Boolean,
-    confirmBtnText:Int,
-    dismissBtnText:Int,
-    title:Int,
-    titleIcon: Int,
-    content: @Composable ()->Unit
+    confirmBtnText:Int?=null,
+    dismissBtnText:Int?=null,
+    title: Int,
+    titleIcon: Int?=null,
+    content: @Composable ()->Unit ={}
     ) {
     if(isDialogOpened) {
         AlertDialog(
@@ -41,11 +42,13 @@ fun PopupDialog(
                     horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.add_subject_dialoge_spacedby)),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(
-                        painter = painterResource(titleIcon),
-                        modifier = Modifier.size(dimensionResource(R.dimen.add_subject_dialoge_icon_size)),
-                        contentDescription = null
-                    )
+                    if(titleIcon!=null) {
+                        Image(
+                            painter = painterResource(titleIcon),
+                            modifier = Modifier.size(dimensionResource(R.dimen.add_subject_dialoge_icon_size)),
+                            contentDescription = null
+                        )
+                    }
                     Text(
                         text = stringResource(title),
                         style = MaterialTheme.typography.headlineMedium.copy(fontSize=dimensionResource(R.dimen.dialog_box_headline_size).value.sp),
@@ -57,29 +60,32 @@ fun PopupDialog(
               content()
             },
             dismissButton = {
-                Text(
-                    text = stringResource(dismissBtnText),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier
-                        .padding(end = dimensionResource(R.dimen.add_subject_dialoge_spacedby))
-                        .clickable (
-                            onClick = { onDismiss() },
-                            enabled = true
-                        )
-                )
+                if (dismissBtnText!=null) {
+                    Text(
+                        text = stringResource(dismissBtnText),
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier
+                            .padding(end = dimensionResource(R.dimen.add_subject_dialoge_spacedby))
+                            .clickable(
+                                onClick = { onDismiss() },
+                                enabled = true
+                            )
+                    )
+                }
 
             },
             confirmButton = {
-                Text(
-                    text = stringResource(confirmBtnText),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.
-                    clickable (
-                        onClick = { onConfirm() },
+                if (confirmBtnText!=null) {
+                    Text(
+                        text = stringResource(confirmBtnText),
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.clickable(
+                            onClick = { onConfirm() },
+                        )
                     )
-                )
+                }
             },
         )
     }

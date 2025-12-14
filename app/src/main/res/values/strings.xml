@@ -45,6 +45,22 @@
     <string name="confirm_password_placeholder">please enter your password again</string>
     <string name="user_name_label">user name</string>
     <string name="user_name_placeholder">enter a valid username</string>
+    <string name="signup_success">You\'re Signed up Successfully</string>
+    <string name="log_in_success">You\'re Loged in Successfully</string>
+    <string name="add_new_task">Add New Task</string>
+    <string name="task_screen_header">New Task</string>
+    <string name="task_title_plachodler">enter your task title</string>
+    <string name="task_title_lable">Title</string>
+    <string name="task_descripion_plachodler">enter your task description</string>
+    <string name="task_description_lable">Description</string>
+    <string name="due_data_header">Due Date</string>
+    <string name="priority_header">Task Priority</string>
+    <string name="save_btn">Save</string>
+    <string name="task_added">Task Added Successfully</string>
+    <string name="session_screen_header">Study Session</string>
+    <string name="select_subject">select subject</string>
+    <string name="log_out">Log out</string>
+    <string name="log_out_q">Do you want to logout ?</string>
 
 
 </resources>

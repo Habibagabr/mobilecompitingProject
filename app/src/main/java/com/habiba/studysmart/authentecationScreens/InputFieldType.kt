@@ -4,5 +4,7 @@ enum class InputFieldType {
     Email(),
     Password(),
     Name(),
-    ConfirmPassword()
+    ConfirmPassword(),
+    TaskTitle(),
+    TaskDescription()
 }

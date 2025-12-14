@@ -1,4 +1,5 @@
 package com.habiba.studysmart.subjectScreen.ui.viewModel
 
-class SubjectScreenEvents {
+sealed class SubjectScreenEvents {
+    data object ScreenLoaded : SubjectScreenEvents()
 }

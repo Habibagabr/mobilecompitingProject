@@ -10,26 +10,30 @@ import com.habiba.studysmart.R
 import com.habiba.studysmart.common.components.TasksKpiCard
 
 @Composable
-fun TaskKpiList(){
+fun TaskKpiList(
+    subjectCount:Int,
+    goalStudyHour: Number,
+    studiedHour: Number,
+    ){
     Row (
         horizontalArrangement = Arrangement.SpaceEvenly,
     ){
         Box(
             modifier=Modifier.weight(1f)
         ) {
-            TasksKpiCard(stringResource(R.string.subject_kpi_card), 4)
+            TasksKpiCard(stringResource(R.string.subject_kpi_card), subjectCount)
         }
         Box(
             modifier=Modifier.weight(1f)
         ) {
 
-            TasksKpiCard(stringResource(R.string.studied_hour_kpi_card), 8.8)
+            TasksKpiCard(stringResource(R.string.studied_hour_kpi_card), studiedHour)
         }
         Box(
             modifier=Modifier.weight(1f)
         ) {
 
-            TasksKpiCard(stringResource(R.string.goal_kpi_card), 17.0)
+            TasksKpiCard(stringResource(R.string.goal_kpi_card), goalStudyHour)
         }
 
 

@@ -35,7 +35,7 @@ fun AuthenticationScreenTemplate(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color=constantBlackBackground)
+            .background(color=MaterialTheme.colorScheme.surface)
     ) {
 
         Column(
@@ -86,7 +86,7 @@ fun AuthenticationScreenTemplate(
                     Text(
                         text = alternativeOption,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
 
                     )
                     Text(
@@ -97,7 +97,7 @@ fun AuthenticationScreenTemplate(
                         modifier = Modifier
                             .padding(start = 4.dp)
                             .clickable{onSubBtnClicked()},
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
 
                     )
                 }

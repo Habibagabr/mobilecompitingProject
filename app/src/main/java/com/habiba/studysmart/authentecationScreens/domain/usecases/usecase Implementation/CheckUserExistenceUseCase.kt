@@ -1,6 +1,6 @@
 package com.habiba.studysmart.domain.usecases
 
-import com.habiba.studysmart.authentecationScreens.domain.repository.IAuthenticationRepository
+import com.habiba.studysmart.domain.repository.IAuthenticationRepository
 import com.habiba.studysmart.domain.usecases.usecase.ICheckUserExistenceUseCase
 import javax.inject.Inject
 

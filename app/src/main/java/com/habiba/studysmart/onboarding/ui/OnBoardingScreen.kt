@@ -36,7 +36,7 @@ fun OnBoardingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = constantBlackBackground)
+            .background(color = MaterialTheme.colorScheme.surface)
             .padding(horizontal = dimensionResource(R.dimen.app_horizontal_padding)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
@@ -54,12 +54,12 @@ fun OnBoardingScreen(
             Text(
                 text = stringResource(R.string.onboarding_welcome_text),
                 style = MaterialTheme.typography.displaySmall,
-                color = constantWhite
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Text(
                 text = stringResource(R.string.onboarding_welcome_sub_text),
                 style = MaterialTheme.typography.bodyMedium,
-                color = constantWhite,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
             )
 

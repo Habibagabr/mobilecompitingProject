@@ -83,8 +83,22 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
 
+    // room database
+    val room_version = "2.7.0"
+    implementation("androidx.room:room-runtime:$room_version")
+
+    implementation("androidx.room:room-ktx:$room_version")
+
+    ksp("androidx.room:room-compiler:$room_version")
 
 
+    //testing
+    testImplementation("junit:junit:4.13.2")
+
+    testImplementation("org.mockito:mockito-core:5.21.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
 
 }

@@ -16,13 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.habiba.studysmart.R
-import com.habiba.studysmart.homeScreen.domain.model.SessionModel
+import com.habiba.studysmart.domain.model.SessionDomainModel
 import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
+import com.habiba.studysmart.sessionScreen.utils.formatDate
+import com.habiba.studysmart.sessionScreen.utils.formatDuration
 
 @Composable
 fun RecentlyStudySessionCard(
-    subject: SessionModel,
-    homeScreenEvents: (HomeScreenEvents)->Unit = {}
+    session: SessionDomainModel,
 ) {
     Row(
         modifier = Modifier
@@ -35,39 +36,39 @@ fun RecentlyStudySessionCard(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
+
+        // -------- Left side (Subject + Date) --------
         Column(
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.upcoming_tasks_card_spacedBy))
-        ){
+            verticalArrangement = Arrangement.spacedBy(
+                dimensionResource(R.dimen.upcoming_tasks_card_spacedBy)
+            )
+        ) {
             Text(
-                text = subject.relatedToSubject,
+                text = session.relatedToSubject ?: "",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+
             Text(
-                text = subject.date,
+                text = formatDate(session.date),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
-            ) }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.recently_study_spacedBy))
-        ){
-            Text(
-                text = subject.duration.toString() + " hr",
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Icon(
-                modifier = Modifier.clickable {
-                    homeScreenEvents(HomeScreenEvents.DeleteSessionClicked(subject.sessionId))},
-                painter = painterResource(R.drawable.img_books),
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
+        // -------- Right side (Duration + Delete) --------
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(
+                dimensionResource(R.dimen.recently_study_spacedBy)
+            )
+        ) {
+            Text(
+                text = formatDuration(session.duration),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
 
-
+        }
     }
 }

@@ -5,5 +5,7 @@ enum class InputFieldsErrors(val errorMsg:String) {
     EmptySubjectNameField("please enter the subject name"),
     InvalidSubjectName("please enter a valid formate subject name"),
     EmptyGoalHourField("please enter the goal hour"),
-    InvalidGoalHourField("please enter a valid goal hour")
+    InvalidGoalNegativeHourField("please enter a valid goal hour"),
+    InvalidGoalSmallHourField("minimum goal hour is 1 "),
+
 }

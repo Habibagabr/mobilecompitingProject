@@ -1,6 +1,7 @@
 package com.habiba.studysmart.subjectScreen.ui.sections
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +15,9 @@ import androidx.compose.ui.res.painterResource
 import com.habiba.studysmart.R
 
 @Composable
-fun SubjectScreenHeaderSection(){
+fun SubjectScreenHeaderSection(
+    onBackBtnPressed:()->Unit
+){
         Row(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
@@ -23,27 +26,13 @@ fun SubjectScreenHeaderSection(){
             verticalAlignment = Alignment.CenterVertically
         ){
             Icon(
-                painter = painterResource(R.drawable.img_lamp),
+                modifier = Modifier.clickable{
+                    onBackBtnPressed()
+                },
+                painter = painterResource(R.drawable.arrow_back),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onBackground
             )
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.top_bar_icon_padding)),
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.img_lamp),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
-                Icon(
-                    painter = painterResource(R.drawable.img_lamp),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
-
-            }
-
 
 
         }

@@ -13,5 +13,4 @@ enum class SubjectsColors(val color: List<Color>) {
     GreenGradient(greenGradient),
     PinkOrangeGradient(pinkOrangeGradient),
     BlueGradient(blueGradient)
-
 }

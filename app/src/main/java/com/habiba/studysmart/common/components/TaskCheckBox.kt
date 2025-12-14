@@ -37,7 +37,7 @@ fun TaskCheckBox(
     ){
             AnimatedVisibility(isCompleted) {
                 Icon(
-                    painter = painterResource(R.drawable.img_books),
+                    painter = painterResource(R.drawable.baseline_check_24),
                     contentDescription = null,
                     tint = PriorityLevel.getPriorityColor(priorityLevel.value)
 

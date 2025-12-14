@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -12,11 +13,14 @@ import androidx.navigation.NavController
 import com.habiba.studysmart.R
 import com.habiba.studysmart.authentecationScreens.InputFieldType
 import com.habiba.studysmart.authentecationScreens.common.commonComponent.AuthenticationScreenTemplate
-import com.habiba.studysmart.authentecationScreens.common.commonComponent.CustomizedInputField
-import com.habiba.studysmart.authentecationScreens.login.ui.viewModel.LoginScreenEvents
-import com.habiba.studysmart.authentecationScreens.login.ui.viewModel.LoginScreenState
+import com.habiba.studysmart.common.components.CustomizedInputField
+import com.habiba.studysmart.authentecationScreens.login.viewModel.LoginScreenEvents
+import com.habiba.studysmart.authentecationScreens.login.viewModel.LoginScreenState
+import com.habiba.studysmart.common.components.PopupDialog
+import com.habiba.studysmart.navigation.Home
 import com.habiba.studysmart.navigation.OnBoardingScreen
 import com.habiba.studysmart.navigation.SignupScreen
+import kotlinx.coroutines.delay
 
 @Composable
 fun LoginScreen(
@@ -24,6 +28,28 @@ fun LoginScreen(
     state: LoginScreenState ,
     onEvent: (LoginScreenEvents) -> Unit
     ) {
+    LaunchedEffect(state.success) {
+        if (state.success) {
+
+            delay(1500)
+
+            navController.navigate(Home) {
+                popUpTo(OnBoardingScreen) { inclusive = true }
+            }
+        }
+    }
+
+    PopupDialog(
+        isDialogOpened = state.success,
+        title = R.string.log_in_success,
+        titleIcon = R.drawable.check
+    ) {
+
+    }
+
+
+
+
     AuthenticationScreenTemplate(
         screenTitle = stringResource(R.string.auth_welcome),
         screenSubTitle = stringResource(R.string.auth_welcome_sub),
@@ -34,7 +60,12 @@ fun LoginScreen(
             navController.navigate(SignupScreen){
                 popUpTo(OnBoardingScreen) { inclusive = false }
             } },
-        onBtnClicked={onEvent(LoginScreenEvents.LoginPressed())}
+        onBtnClicked={
+            onEvent(LoginScreenEvents.LoginPressed)
+        },
+        generalErrorMsg=state.generalError,
+        isGeneralError = state.isGeneralError
+
 
     ){
         Column(

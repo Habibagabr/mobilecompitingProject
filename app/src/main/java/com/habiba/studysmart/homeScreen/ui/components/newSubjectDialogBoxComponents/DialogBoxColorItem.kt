@@ -37,7 +37,7 @@ fun DialogBoxColorItem(itemColor: SubjectsColors, onColorSelected: (SubjectsColo
     ){
         if(itemColor == selectedColor) {
             Icon(
-                painter = painterResource(R.drawable.img_lamp),
+                painter = painterResource(R.drawable.baseline_check_24),
                 contentDescription = null,
                 tint = Color.White
             )

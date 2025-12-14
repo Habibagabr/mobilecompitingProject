@@ -1,11 +1,19 @@
 package com.habiba.studysmart.homeScreen.ui.homeScreenViewModel
 
-import com.habiba.studysmart.homeScreen.domain.model.SessionModel
-import com.habiba.studysmart.homeScreen.domain.model.SubjectModel
-import com.habiba.studysmart.homeScreen.domain.model.TaskModel
+import android.service.autofill.UserData
+import com.habiba.studysmart.data.model.SessionModel
+import com.habiba.studysmart.data.model.SubjectModel
+import com.habiba.studysmart.data.model.TaskModel
+import com.habiba.studysmart.domain.model.SessionDomainModel
+import com.habiba.studysmart.domain.model.SubjectDomainModel
+import com.habiba.studysmart.domain.model.TaskDomainModel
+import com.habiba.studysmart.domain.model.UserDomainModel
+import com.habiba.studysmart.domain.model.UserHomeDataDomainModel
 import com.habiba.studysmart.homeScreen.util.SubjectsColors
 
 data class HomeScreenState (
+    val screenLoaded:Boolean = false,
+    val userData: UserHomeDataDomainModel ? = null,
     val subjectDialogShowUp : Boolean = false,
     val deleteSessionDialogShowUp : Boolean = false,
     val isDeleteSessionDialogConfirmed : Boolean = false,
@@ -17,7 +25,7 @@ data class HomeScreenState (
     val goalHourError: String = "",
     val isSubjectNameError:Boolean = false,
     val isGoalHourError:Boolean = false,
-    val upComingList:List<TaskModel> = emptyList(),
-    val recentlyStudySessionsList:List<SessionModel> = emptyList(),
-    val subjectList:List<SubjectModel> = emptyList()
+    val upComingList:List<TaskDomainModel> = emptyList(),
+    val recentlyStudySessionsList:List<SessionDomainModel> = emptyList(),
+    val subjectList:List<SubjectDomainModel> = emptyList()
 )

@@ -4,5 +4,9 @@ import com.habiba.studysmart.authentecationScreens.domain.usecases.utils.SignupR
 
 
 interface ISignupUseCase {
-    suspend operator fun invoke(userName:String, email:String,password:String): SignupResult
+    suspend operator fun invoke(
+        userName: String,
+        email: String,
+        password: String
+    ): SignupResult
 }

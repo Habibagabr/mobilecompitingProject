@@ -1,3 +1,5 @@
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,9 +12,9 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.toRoute
 import com.habiba.studysmart.authentecationScreens.login.ui.LoginScreen
-import com.habiba.studysmart.authentecationScreens.login.ui.viewModel.LoginViewModel
+import com.habiba.studysmart.authentecationScreens.login.viewModel.LoginViewModel
 import com.habiba.studysmart.onboarding.ui.OnBoardingScreen
 import com.habiba.studysmart.onboarding.ui.viewModel.OnBoardingViewModel
 import com.habiba.studysmart.authentecationScreens.signup.ui.SignupScreen
@@ -21,9 +23,19 @@ import com.habiba.studysmart.homeScreen.ui.HomeScreen
 import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenViewModel
 import com.habiba.studysmart.navigation.Home
 import com.habiba.studysmart.navigation.LoginScreen
+import com.habiba.studysmart.navigation.SessionScreen
 import com.habiba.studysmart.navigation.SignupScreen
+import com.habiba.studysmart.navigation.SubjectScreen
+import com.habiba.studysmart.navigation.TaskScreen
+import com.habiba.studysmart.sessionScreen.ui.SessionScreen
+import com.habiba.studysmart.sessionScreen.ui.viewModel.SessionScreenViewModel
 import com.habiba.studysmart.splashScreen.viewModel.SplashScreenViewModel
+import com.habiba.studysmart.subjectScreen.ui.SubjectScreen
+import com.habiba.studysmart.subjectScreen.ui.viewModel.SubjectScreenViewModel
+import com.habiba.studysmart.taskScreen.ui.TaskScreen
+import com.habiba.studysmart.taskScreen.ui.viewModel.TaskScreenViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavGraph() {
     val navController = rememberNavController()
@@ -62,7 +74,7 @@ fun NavGraph() {
         }
 
         composable<OnBoardingScreen> {
-            val onBoardingViewModel: OnBoardingViewModel = viewModel()
+            val onBoardingViewModel: OnBoardingViewModel = hiltViewModel()
             val onBoardingState = onBoardingViewModel.onBoardingState
             val state by onBoardingState.collectAsState()
             OnBoardingScreen(
@@ -72,7 +84,7 @@ fun NavGraph() {
             )
         }
         composable<LoginScreen> {
-            val loginViewModel: LoginViewModel = viewModel()
+            val loginViewModel: LoginViewModel = hiltViewModel()
             val loginState = loginViewModel.loginState
             val state by loginState.collectAsState()
            LoginScreen(
@@ -94,7 +106,7 @@ fun NavGraph() {
         }
 
         composable<Home> {
-            val homeViewModel : HomeScreenViewModel = viewModel()
+            val homeViewModel : HomeScreenViewModel = hiltViewModel()
             val homeState = homeViewModel.homeScreenState
             val state by homeState.collectAsState()
             HomeScreen(
@@ -105,6 +117,57 @@ fun NavGraph() {
 
         }
 
+        composable<SubjectScreen>{ backStackEntry->
+            val arg = backStackEntry.toRoute<SubjectScreen>()
+            val subjectId = arg.subjectId
+
+            val screenViewModel : SubjectScreenViewModel = hiltViewModel()
+            val screenState = screenViewModel.state
+            val state by screenState.collectAsState()
+
+            SubjectScreen(
+                state = state,
+                events = screenViewModel::onEvent,
+                navController = navController
+
+            )
+
+        }
+
+        composable<TaskScreen> { backStackEntry ->
+            val arg = backStackEntry.toRoute<TaskScreen>()
+            val subjectId = arg.subjectId
+            val subjectName= arg.subjectName
+
+            val viewModel : TaskScreenViewModel = hiltViewModel()
+            val screenState = viewModel.state
+            val state by screenState.collectAsState()
+            TaskScreen(
+                subjectId= subjectId,
+                state=state,
+                onEvent = viewModel::onEvent,
+                navController = navController
+            )
+
+        }
+
+        composable<SessionScreen>{backStackEntry ->
+            val arg = backStackEntry.toRoute<SessionScreen>()
+            val userId = arg.userId
+
+            val viewModel : SessionScreenViewModel = hiltViewModel()
+            val screenState = viewModel.state
+            val state by screenState.collectAsState()
+
+            SessionScreen(
+                navController = navController,
+                state=state,
+                onEvent = viewModel::onEvent
+
+            )
+
+
+        }
 
     }
 }

@@ -14,9 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.habiba.studysmart.R
+import com.habiba.studysmart.homeScreen.ui.homeScreenViewModel.HomeScreenEvents
 
 @Composable
-fun StartStudySessionSection() {
+fun StartStudySessionSection(
+    onBtnClicked:()->Unit
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
@@ -31,7 +34,9 @@ fun StartStudySessionSection() {
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary),
-            onClick = {}
+            onClick = {
+                onBtnClicked()
+            }
         )
         {
             Text(

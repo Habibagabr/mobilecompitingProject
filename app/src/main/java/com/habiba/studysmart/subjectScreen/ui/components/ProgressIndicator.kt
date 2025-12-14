@@ -13,32 +13,36 @@ import androidx.compose.ui.res.dimensionResource
 import com.habiba.studysmart.R
 
 @Composable
-fun ProgressIndicator() {
+fun ProgressIndicator(
+    goalHours: Number = 0.0,
+    actualStudiedHours: Number = 0.0
+) {
+    val goal = goalHours.toFloat()
+    val actual = actualStudiedHours.toFloat()
+
+    val progress =
+        if (goal == 0f) 0f
+        else (actual / goal).coerceIn(0f, 1f)
+
     Box(
         modifier = Modifier.size(dimensionResource(R.dimen.circular_indicator_size)),
         contentAlignment = Alignment.Center
-
     ) {
         CircularProgressIndicator(
-            progress = {
-                1f
-            },
+            progress = { 1f },
             modifier = Modifier.fillMaxSize(),
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
         )
         CircularProgressIndicator(
-            progress = {
-                0.75f
-            },
+            progress = { progress },
             modifier = Modifier.fillMaxSize(),
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
-            text = "75%",
+            text = "${ (progress * 100).toInt() }%",
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-
     }
 }

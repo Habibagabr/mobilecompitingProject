@@ -48,7 +48,7 @@
     <dimen name="recently_study_spacedBy">7dp</dimen>
 
 
-    <dimen name="add_subject_dialoge_icon_size">32dp</dimen>
+    <dimen name="add_subject_dialoge_icon_size">28dp</dimen>
     <dimen name="add_subject_dialoge_spacedby">10dp</dimen>
     <dimen name="dialog_box_headline_size">20sp</dimen>
     <dimen name="dialog_box_color_item_size">40dp</dimen>
@@ -66,6 +66,12 @@
     <dimen name="text_field_space">24dp</dimen>
     <dimen name="auth_screen_bottom_padding">150dp</dimen>
     <dimen name="input_error_space">5dp</dimen>
+
+    <dimen name="small_btn_height">52dp</dimen>
+    <dimen name="small_btn_width">100dp</dimen>
+    <dimen name="corner_radius">20dp</dimen>
+    <dimen name="btn_padding">2dp</dimen>
+    <dimen name="fb_space">18dp</dimen>
 
 
 </resources>
